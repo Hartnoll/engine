@@ -1,4 +1,6 @@
 # Engine
+The main idea is to create a web application that engineering students can access to partake in a specific lab which is otherwise very unreliable. The web app will simulate the effects of rotational speed on a combustion engine's fuel consumption.
+
 **Current Situation** 
 * Jemma has been working on a framework of data for the lab. 
 * She has produced two sets of data, varying in reliability, and corresponding videos demonstrating the engine producing this data. 
