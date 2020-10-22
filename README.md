@@ -4,7 +4,7 @@ The main idea is to create a web application that engineering students can acces
 **Current Situation** 
 * Jemma has been working on a framework of data for the lab. 
 * She has produced two sets of data, varying in reliability, and corresponding videos demonstrating the engine producing this data. 
-*T he range between the two sets of data is not necessarily a problem as they want the students to understand that not all data collected can be relied upon. 
+* The range between the two sets of data is not necessarily a problem as they want the students to understand that not all data collected can be relied upon. 
 
 **Priorities** 
 1. The students should be able to select the rotational speed of the engine using a dial on an online control panel. The video that corresponds to the results from that rotational speed should then be displayed. Videos have been formatted to contain both the engine and the real-life control panel with values, but we could display the control panel values using software. 
