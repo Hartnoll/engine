@@ -10,6 +10,6 @@
 * As a university we want to give students the ability to use our expensive lab equipment so that we can provide an adequate blended-learning experience and show to prospective students that as a top university we are adaptable to the current situation.
 
 **Engineering Faculty (Becky)** 
-* As a faculty we want to have an online lab so that we can cary out labs to all students at the same time which would reduce timetabling issues and reduce risk to staff health by not having students in the building.
+* As a faculty we want to have an online lab experience so that we can cary out the labs to all students at the same time, this would reduce timetabling issues and reduce risk to staff health by not having students in the building.
 
 
