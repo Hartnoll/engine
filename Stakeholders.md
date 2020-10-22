@@ -1,5 +1,9 @@
 # Stakeholders
 
+**Engineering Faculty (Becky)**
+* More students can be taught at the same time reducing timtable problems
+* Students can partake in the virtual lab without actually being in the building
+
 **Students**
 * Will enhance the learning allowing them to access a new module without the restrictions noted in the project proposal 
 
