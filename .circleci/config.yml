@@ -12,7 +12,7 @@ jobs:
           paths:
             - ~/engine
 
-  test_backend:
+  test:
     docker:
       - image: circleci/openjdk:latest
     working_directory: ~/engine/engine
@@ -30,7 +30,7 @@ jobs:
           name: Run Tests
           command: mvn -f pom.xml integration-test
 
-  deploy_backend:
+  deploy:
     docker:
       - image: circleci/openjdk:latest
     working_directory: ~/lidar/backend/lidar
@@ -40,7 +40,7 @@ jobs:
       - restore_cache:
           key: mvn-cache-v1-{{ checksum "pom.xml" }}
       - run:
-          name: Deploy backend
+          name: Deploy
           command: echo "TODO"
 
 workflows:
@@ -48,14 +48,14 @@ workflows:
   workflow:
     jobs:
       - get_code
-      - test_backend:
+      - test:
           filters:
             branches:
               only:
-                - main # Maybe test on dev or even a backend branch?
+                - development # Maybe test on dev or even a backend branch?
           requires:
             - get_code
-      - deploy_backend:
+      - deploy:
           filters:
             branches:
               only: main
