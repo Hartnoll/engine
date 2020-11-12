@@ -52,12 +52,12 @@ workflows:
           filters:
             branches:
               only:
-                - master # Maybe test on dev or even a backend branch?
+                - main # Maybe test on dev or even a backend branch?
           requires:
             - get_code
       - deploy_backend:
           filters:
             branches:
-              only: master
+              only: main
           requires:
             - test_backend
