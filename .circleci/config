@@ -1,0 +1,63 @@
+version: 2.1
+
+jobs:
+  get_code:
+    docker:
+      - image: cimg/base:2020.01
+    working_directory: ~/engine
+    steps:
+      - checkout
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/engine
+
+  test_backend:
+    docker:
+      - image: circleci/openjdk:latest
+    working_directory: ~/engine/engine
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: backend-cache-v1-{{ checksum "pom.xml" }}
+      - run: mvn -f pom.xml dependency:go-offline
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: backend-cache-v1-{{ checksum "pom.xml" }}
+      - run:
+          name: Run Tests
+          command: mvn -f pom.xml integration-test
+
+  deploy_backend:
+    docker:
+      - image: circleci/openjdk:latest
+    working_directory: ~/lidar/backend/lidar
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: mvn-cache-v1-{{ checksum "pom.xml" }}
+      - run:
+          name: Deploy backend
+          command: echo "TODO"
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - get_code
+      - test_backend:
+          filters:
+            branches:
+              only:
+                - master # Maybe test on dev or even a backend branch?
+          requires:
+            - get_code
+      - deploy_backend:
+          filters:
+            branches:
+              only: master
+          requires:
+            - test_backend
