@@ -9,7 +9,13 @@
 </head>
 <body>
 <script src="js/sketch.js"></script>
-<video id="vid" width=700 height=auto muted>
-</video>
+<iframe id="video" src="https://player.vimeo.com/video/480866534" width="640" height="360" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+    var iframe = document.querySelector('iframe');
+    var player = new Vimeo.Player(iframe);
+    player.height = "auto";
+    player.width = "700";
+</script>
 </body>
 </html>

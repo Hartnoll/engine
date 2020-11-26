@@ -3,6 +3,7 @@ const x = SIZE / 2;
 const y = SIZE / 2;
 const r = SIZE / 5;
 var speeds = ["1400","1500","1600", "1700", "1800", "1900", "2000","2100","2200","2300","2400", "----"];
+var id = ["480865808", "480866073", "480866431", "480866534", "484084134", "484084340", "484084647", "484084941", "", "", "", ""];
 var count = speeds.length - 1;
 var w = window.innerWidth;
 var h = window.innerHeight;
@@ -10,10 +11,8 @@ let myFont;
 document.getElementsByTagName("BODY")[0].onresize = function() {myFunction()};
 
 function setup() {
-  let video = document.getElementById('vid');
   let w = window.outerWidth;
   let h = window.outerHeight;
-  video.width = w/2;
   let cnv = createCanvas(w/2, h/2);
   cnv.position(w/2,0);
   /*button = createButton('play');
@@ -54,14 +53,6 @@ function draw() {
   pop();
 }
 
-function play() {
-  if (video.paused) {
-    video.play();
-  }
-  else {
-    video.pause();
-  }
-}
 
 function mousePressed() {
   if (dist(mouseX,mouseY, x, y) < r) {
@@ -69,8 +60,9 @@ function mousePressed() {
     if (count > (speeds.length -1) ){
       count = 0;
     }
-    var video = document.getElementById('vid');
-      video.src = "js/R2_".concat(speeds[count]).concat(".mp4");
-      video.load();
+  var video = document.getElementById("video");
+    video.src = "https://player.vimeo.com/video/".concat(id[count]);
+    video.contentDocument.location.reload(true);
+
   }
 }
