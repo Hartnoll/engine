@@ -6,22 +6,22 @@
     <title>Control Panel</title>
     <script src="js/libraries/p5.min.js"></script>
     <script src="js/libraries/p5.sound.min.js"></script>
+    <link rel="stylesheet" href="js/style.css">
 </head>
 <body>
 <script src="js/sketch.js"></script>
-<div id="fuel_panel">
-</div>
+<div id="fuel_panel" class="video"></div>
 <script src="https://player.vimeo.com/api/player.js"></script>
 <script>
     var options = {
         id: 480865808,
-        width: 640,
+        width: window.innerWidth / 2,
         controls: false,
         muted: true
     }
     let player = new Vimeo.Player('fuel_panel', options);
-    player.on('timeupdate', timeChange)
-    player.on('ended', timeChange)
+    player.on('timeupdate', timeChange);
+    player.on('ended', timeChange);
 </script>
 </body>
 </html>
