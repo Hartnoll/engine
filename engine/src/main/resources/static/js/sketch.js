@@ -88,9 +88,9 @@ function draw() {
   rect(x + w/4 + r, y -10, 10, 20);
   pop();
   drawRivet(rivRad, rivRad);
-  drawRivet(rivRad, 200);
+  drawRivet(rivRad, 2 * y + rivRad);
   drawRivet(w/2 - rivRad, rivRad);
-  drawRivet(w/2-rivRad, 200);
+  drawRivet(w/2-rivRad, 2 * y + rivRad);
 }
 
 function drawRivet(xCoord, yCoord) {
