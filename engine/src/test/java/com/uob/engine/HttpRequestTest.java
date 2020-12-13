@@ -20,13 +20,13 @@ public class HttpRequestTest {
 
     @Test
     public void LoadsControlPanelCorrectly() throws Exception {
-        ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:8080/control_panel", String.class);
+        ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port+"/control_panel", String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
     @Test
     public void LoadsCalculationsCorrectly() throws Exception {
-        ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:8080/calculations", String.class);
+        ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port+"/calculations", String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 }
