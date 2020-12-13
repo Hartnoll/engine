@@ -52,7 +52,8 @@ workflows:
           filters:
             branches:
               only:
-                - development # Maybe test on dev or even a backend branch?
+                - development
+                - main
           requires:
             - get_code
       - deploy:
