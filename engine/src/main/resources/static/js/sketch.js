@@ -1,29 +1,16 @@
-const SIZE = 400;
-const x = SIZE / 2;
-const y = SIZE / 2;
+const SIZE = window.innerHeight / 2;
+const x = window.innerWidth / 8;
+let y;
 const r = SIZE / 5;
 let speeds = ["1400","1500","1600", "1700", "1800", "1900", "2000","2100","2200","2300","2400"];
-let id = ["480865808", "480866073", "480866431", "480866534", "484084134", "484084340", "484084647", "484084941", "", "", "", ""];
+let id = ["480865808", "480866073", "480866431", "480866534", "484084134", "484084340", "484084647", "484084941", "490413688", "490414048", "490451670"];
 let count = 0;
 let paused = true;
 let myFont;
 let time = 0;
 let rivRad = 20;
-let w = window.innerWidth
+let w = window.innerWidth;
 let h;
-
-function setup() {
-  player.getVideoHeight().then(function(height) {
-     h = height;
-  }).catch(function(error) {
-     h = 200;
-  });
-  let cnv = createCanvas(w/2, document.getElementById('fuel_panel').offsetHeight);
-  cnv.position(w / 2,0);
-  let button = createButton('Start/Stop');
-  button.position((3 * w) / 4 - (button.width)/2, y - button.height);
-  button.mousePressed(playPause);
-}
 
 function preload() {
   myFont = loadFont('js/digital-7.ttf');
@@ -88,9 +75,9 @@ function draw() {
   rect(x + w/4 + r, y -10, 10, 20);
   pop();
   drawRivet(rivRad, rivRad);
-  drawRivet(rivRad, 2 * y + rivRad);
+  drawRivet(rivRad, h - rivRad);
   drawRivet(w/2 - rivRad, rivRad);
-  drawRivet(w/2-rivRad, 2 * y + rivRad);
+  drawRivet(w/2-rivRad, h - rivRad);
 }
 
 function drawRivet(xCoord, yCoord) {
@@ -123,3 +110,13 @@ function mousePressed() {
 
   }
 }
+
+player.ready().then(function() {
+  var cnv = createCanvas(w/2, document.getElementById('fuel_panel').offsetHeight);
+  cnv.position(w / 2,0);
+  h = document.getElementById('fuel_panel').offsetHeight;
+  y = h/2;
+  let button = createButton('Start/Stop');
+  button.position((3 * w) / 4 - (button.width)/2, y - button.height);
+  button.mousePressed(playPause);
+});
