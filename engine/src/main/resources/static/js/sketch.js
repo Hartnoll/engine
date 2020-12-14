@@ -119,4 +119,6 @@ player.ready().then(function() {
   let button = createButton('Start/Stop');
   button.position((3 * w) / 4 - (button.width)/2, y - button.height);
   button.mousePressed(playPause);
+  player.on('timeupdate', timeChange);
+  player.on('ended', timeChange);
 });
