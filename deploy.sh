@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-rm -rf build/
+cd engine
+rm -rf target
 echo "Deleted build/ folder"
 
-./gradlew bootJar
+mvn package
 echo "Generating jar file"
 
 #Copy execute_commands_on_ec2.sh file which has commands to be executed on server... Here we are copying this file
