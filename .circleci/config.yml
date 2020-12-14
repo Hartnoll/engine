@@ -53,7 +53,7 @@ jobs:
             scp -o StrictHostKeyChecking=no engine-0.0.1-SNAPSHOT.jar ubuntu@100.26.152.21:/home/ubuntu
             echo "Copied jar file from local machine to ec2 instance"
             echo "Connecting to ec2 instance and starting server using java -jar command"
-            ssh -f -o StrictHostKeyChecking=no ubuntu@100.26.152.21 "cd /home/ubuntu && ./execute_commands_on_ec2.sh"
+            ssh -f -o StrictHostKeyChecking=no ubuntu@100.26.152.21 "cd /home/ubuntu && nohup ./execute_commands_on_ec2.sh"
 workflows:
   version: 2
   workflow:
