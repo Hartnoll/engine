@@ -11,6 +11,13 @@ let time = 0;
 let rivRad = 20;
 let w = window.innerWidth;
 let h;
+var options = {
+  id: 480865808,
+  width: window.innerWidth / 2,
+  controls: false,
+  muted: true
+}
+let player = new Vimeo.Player('fuel_panel', options);
 
 function preload() {
   myFont = loadFont('js/digital-7.ttf');
