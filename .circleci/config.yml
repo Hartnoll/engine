@@ -36,7 +36,7 @@ jobs:
     working_directory: ~/engine
     steps:
       - add_ssh_keys:
-        fingerprints:
+        - fingerprints:
           - "a6:a7:4c:76:07:69:9c:cb:e2:55:06:94:bb:06:8a:27"
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
