@@ -41,17 +41,17 @@ jobs:
           key: mvn-cache-v1-{{ checksum "pom.xml" }}
       - run:
           name: Deploy
-          commands: 
-            - cd engine
-            - rm -rf target
-            - echo "Deleted target/ folder"
-            - mvn package
-            - echo "Generating jar file"
-            - cd ..
-            - scp target/engine-0.0.1-SNAPSHOT.jar eubuntu@100.26.152.21:/home/ubuntu
-            - echo "Copied jar file from local machine to ec2 instance"
-            - echo "Connecting to ec2 instance and starting server using java -jar command"
-            - ssh ubuntu@100.26.152.21:/home/ubuntu ./execute_commands_on_ec2.sh
+          command: |
+            cd engine
+            rm -rf target
+            echo "Deleted target/ folder"
+            mvn package
+            echo "Generating jar file"
+            cd ..
+            scp target/engine-0.0.1-SNAPSHOT.jar eubuntu@100.26.152.21:/home/ubuntu
+            echo "Copied jar file from local machine to ec2 instance"
+            echo "Connecting to ec2 instance and starting server using java -jar command"
+            ssh ubuntu@100.26.152.21:/home/ubuntu ./execute_commands_on_ec2.sh
 workflows:
   version: 2
   workflow:
