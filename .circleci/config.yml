@@ -48,6 +48,8 @@ jobs:
             mvn package
             echo "Generating jar file"
             cd ..
+            scp -o StrictHostKeyChecking=no file dest
+            ssh -f o StrictHostKeyChecking=no host command
             scp target/engine-0.0.1-SNAPSHOT.jar eubuntu@100.26.152.21:/home/ubuntu
             yes
             echo "Copied jar file from local machine to ec2 instance"
