@@ -1,10 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Control Panel</title>
+    <script src="js/libraries/p5.min.js"></script>
+    <script src="js/libraries/p5.sound.min.js"></script>
+    <link rel="stylesheet" href="js/style.css">
 </head>
 <body>
+<div id="fuel_panel" class="video"></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script src="js/sketch.js"></script>
+<TABLE WIDTH="100%"   CELLPADDING="4" id="datasheet">
+    <style>
+        tr
+        {
+            background-color: aliceblue;
+        }
+    </style>
+    <TR>
+        <TH>Engine speed</TH>
+        <TH>Fuel drop length</TH>
+        <TH>Torque</TH>
+        <TH>Fuel Time</TH>
+    </TR>
+    <tbody>
+    <tbody>
+    <td>1400</td>
+    <td><input type="text" size ="50" ></td>
+    <td><input type="text" size ="50" ></td>
+    <td><input type="text" size ="50"></td>
+    </tbody>
+    </TR>
+    <TR>
+        <td>1500</td>
+        <td><input type="text" size ="50"></td>
+        <td><input type="text"size ="50" ></td>
+        <td><input type="text"size ="50" ></td>
+    <TR>
+        <td>1600</td>
+        <td><input type="text"size ="50"></td>
+        <td><input type="text"size ="50" ></td>
+        <td><input type="text"size ="50" ></td>
+    </TR>
+    <TR>
+        <td>1700</td>
+        <td><input type="text"size ="50"></td>
+        <td><input type="text"size ="50" ></td>
+        <td><input type="text"size ="50" ></td>
+    </TR>
+    <TR>
+        <td>1800</td>
+        <td><input type="text"size ="50"></td>
+        <td><input type="text" size ="50"></td>
+        <td><input type="text"size ="50" ></td>
+    </TR>
 
+</TABLE>
 </body>
 </html>
