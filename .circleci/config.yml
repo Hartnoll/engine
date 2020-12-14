@@ -33,7 +33,7 @@ jobs:
   deploy:
     docker:
       - image: circleci/openjdk:latest
-    working_directory: ~/
+    working_directory: ~/engine/build
     steps:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
@@ -41,7 +41,7 @@ jobs:
           key: mvn-cache-v1-{{ checksum "pom.xml" }}
       - run:
           name: Deploy
-          command: ../build/deploy.sh
+          command: ./deploy.sh
 
 workflows:
   version: 2
