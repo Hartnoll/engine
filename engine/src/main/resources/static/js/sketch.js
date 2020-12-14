@@ -1,7 +1,7 @@
-const SIZE = window.innerHeight / 2;
-const x = window.innerWidth / 8;
+let SIZE = window.innerHeight / 2;
+let x = window.innerWidth / 8;
 let y;
-const r = SIZE / 5;
+let r = SIZE / 5;
 let speeds = ["1400","1500","1600", "1700", "1800", "1900", "2000","2100","2200","2300","2400"];
 let id = ["480865808", "480866073", "480866431", "480866534", "484084134", "484084340", "484084647", "484084941", "490413688", "490414048", "490451670"];
 let count = 0;
@@ -129,3 +129,5 @@ player.ready().then(function() {
   player.on('timeupdate', timeChange);
   player.on('ended', timeChange);
 });
+
+
