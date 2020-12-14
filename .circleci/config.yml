@@ -41,7 +41,7 @@ jobs:
           key: mvn-cache-v1-{{ checksum "pom.xml" }}
       - run:
           name: Deploy
-          command: ./deploy.sh
+          command: ../build/deploy.sh
 
 workflows:
   version: 2
