@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class WebController {
     @GetMapping(value="/control_panel")
     public void controlPanel() {
-
     }
 
     @GetMapping(value="/calculations")
-    public ResponseEntity<String> calculations() {
-        return new ResponseEntity<>("Calculations here!", HttpStatus.OK);
+    public void calculations() {
     }
 }
