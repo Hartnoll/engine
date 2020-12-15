@@ -1,10 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Calculation</title>
+    <script src="js/libraries/p5.min.js"></script>
+    <link rel="stylesheet" href="js/style.css">
 </head>
 <body>
+<div id = "Engine Calculation" style ="width:100%"></div>
+<div id="header" style="background-color:#E6E6FA;text-align:center">
+    <h1 style="margin-bottom:0;">Engine Calculation</h1></div>
+
+<div id="step1" style="background-color:#F0FFFF;height:500px;width:30%;float:left;">
+
+    <b>step1</b><br>
+    Enter the initial parameters of the experiment.<br>
+    <br>
+    <br>
+    <br>
+    Fuel drop length = <td><input type="text" size ="5" ></td> cm<br>
+    Choose the fuel type: <br>
+    <input type="radio" name="Q1" value="A" onClick=Q1.value="*">  Petrol<br>
+    <input type="radio" name="Q1" value="B" onClick=Q1.value="**">  Diesel<br>
+    <br>
+    <br>
+    <br>
+    <button type="button">Next</button>
+</div>
+
+<div id="step2" style="background-color:#F5FFFA;height:500px;width:30%;float:left;">
+    <b>step2</b><br>
+    Enter your readings.<br>
+    <br>
+    <br>
+    <br>
+    Speed = <td><input type="text" size ="5" ></td> rpm<br>
+    Torque = <td><input type="text" size ="5" ></td> Nm<br>
+    Fuel time = <td><input type="text" size ="5" ></td> s<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button type="button">Next</button>
+</div>
+
+<div id="step3" style="background-color:#F0FFF0;height:500px;width:40%;float:left;">
+    <b>step3</b><br>
+    Enter the results of your calculations<br>
+    <br>
+    <br>
+    <br>
+    Fuel Flow = <td><input type="text" size ="5" ></td> kg/s (3 sig.fig)<br>
+    Brake Power = <td><input type="text" size ="5" ></td> W (3 s.f)<br>
+    Fuel Power = <td><input type="text" size ="5" ></td> W (3 s.f)<br>
+    Brake Thermal Efficiency = <td><input type="text" size ="5" ></td> % (3 s.f)<br>
+    <br>
+    <br>
+    <br>
+    <button type="button">Check</button>
+</div>
 
 </body>
 </html>
