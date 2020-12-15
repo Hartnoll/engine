@@ -33,7 +33,7 @@ jobs:
   deploy:
     docker:
       - image: circleci/openjdk:latest
-    working_directory: ~/engine
+    working_directory: ~/engine/engine
     steps:
       - add_ssh_keys
       - restore_cache:
@@ -43,7 +43,6 @@ jobs:
       - run:
           name: Deploy
           command: |
-            cd engine
             rm -rf target
             echo "Deleted target/ folder"
             mvn package
