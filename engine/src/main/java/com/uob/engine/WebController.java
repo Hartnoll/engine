@@ -13,7 +13,6 @@ public class WebController {
     }
 
     @GetMapping(value="/calculations")
-    public ResponseEntity<String> calculations() {
-        return new ResponseEntity<>("Calculations here!", HttpStatus.OK);
+    public void calculations() {
     }
 }
