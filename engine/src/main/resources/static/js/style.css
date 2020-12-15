@@ -2,6 +2,7 @@ html, body {
   border: 0px;
   margin: 0px;
   padding: 0px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 canvas {
