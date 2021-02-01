@@ -130,4 +130,16 @@ player.ready().then(function() {
   player.on('ended', timeChange);
 });
 
+function windowResized() {
+  w = window.innerWidth;
+  player.w = w/2;
+  resizeCanvas(w/2, document.getElementById('fuel_panel').offsetHeight);
+  cnv.position(w / 2,0);
+  h = document.getElementById('fuel_panel').offsetHeight;
+  y = h/2;
+  x = window.innerWidth / 8;
+  SIZE = window.innerHeight / 2;
+  r = SIZE / 5;
+}
+
 
