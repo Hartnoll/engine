@@ -1,4 +1,5 @@
-let SIZE = window.innerHeight / 2;
+let SIZE = window.innerWidth / 3;
+let cnv;
 let x = window.innerWidth / 8;
 let y;
 let r = SIZE / 5;
@@ -8,15 +9,16 @@ let count = 0;
 let paused = true;
 let myFont;
 let time = 0;
-let rivRad = 20;
+let rivRad = SIZE / 15;
 let w = window.innerWidth;
 let h;
+let button;
 var options = {
   id: 480865808,
   width: window.innerWidth / 2,
   controls: false,
   muted: true
-}
+};
 let player = new Vimeo.Player('fuel_panel', options);
 
 function preload() {
@@ -33,17 +35,30 @@ function playPause() {
   }
 }
 
+function stopwatchTime(seconds, milliseconds) {
+  let minutes;
+  let tenSeconds;
+  let units;
+  let tenthSeconds;
+  let hundredthSeconds;
+  minutes = (Math.floor(seconds / 60)).toString();
+  tenSeconds = (Math.floor((seconds % 60)/10)).toString();
+  units = ((seconds % 60)%10).toString();
+  tenthSeconds = (Math.floor(milliseconds / 10)).toString();
+  hundredthSeconds = (milliseconds % 10).toString();
+  return minutes.concat(":".concat(tenSeconds).concat(units.concat(":".concat(tenthSeconds.concat(hundredthSeconds)))));
+}
+
+
 function draw() {
   background(230);
   push();
   fill('silver');
-  translate(x,y);
-  ellipse(0,0,2*r,2*r);
+  ellipse(x,y,2*r,2*r);
   pop();
   push();
   fill('black');
-  translate(x,y);
-  ellipse(0,0,r,r);
+  ellipse(x,y,r,r);
   pop();
   push();
   fill(0);
@@ -58,7 +73,7 @@ function draw() {
   textAlign(CENTER);
   textSize(SIZE / 10);
   textFont(myFont);
-  text(getSeconds(time).toString().concat(":".concat(getMilliseconds(time).toString())), x + w/4, y);
+  text(stopwatchTime(getSeconds(time), getMilliseconds(time)), x + w/4, y);
   pop();
   push();
   fill(0);
@@ -69,11 +84,11 @@ function draw() {
   textAlign(CENTER);
   textSize(SIZE / 10);
   textFont(myFont);
-  text(speeds[count], x, y - r - 20);
+  text(speeds[count], x, y - r -((SIZE/10)*1.3) + (SIZE/11));
   pop();
   push();
   stroke('black');
-  strokeWeight(2);
+  strokeWeight(1);
   var angle = ((2*PI) / speeds.length) * (count + 1);
   line(x, y, (x + (r * sin(angle))), (y - (r *cos(angle))));
   pop();
@@ -109,9 +124,17 @@ var timeChange = function(data) {
 
 function mousePressed() {
   if (dist(mouseX,mouseY, x, y) < r) {
-    count ++;
-    if (count > (speeds.length -1) ){
-      count = 0;
+    if (mouseX - x < 0) {
+      count --;
+      if (count < 0) {
+        count = speeds.length -1;
+      }
+    }
+    else {
+      count++;
+      if (count > (speeds.length - 1)) {
+        count = 0;
+      }
     }
   player.loadVideo(id[count])
 
@@ -119,27 +142,47 @@ function mousePressed() {
 }
 
 player.ready().then(function() {
-  var cnv = createCanvas(w/2, document.getElementById('fuel_panel').offsetHeight);
+  cnv = createCanvas(w/2, document.getElementById('fuel_panel').offsetHeight);
   cnv.position(w / 2,0);
   h = document.getElementById('fuel_panel').offsetHeight;
   y = h/2;
-  let button = createButton('Start/Stop');
-  button.position((3 * w) / 4 - (button.width)/2, y - button.height);
+  button = createButton('Start/Stop');
+  alterButton();
   button.mousePressed(playPause);
   player.on('timeupdate', timeChange);
   player.on('ended', timeChange);
 });
 
+function alterButton() {
+  button.style("font-size", SIZE/10);
+  button.size(SIZE/2, SIZE/10);
+  button.position((3 * w) / 4 - (button.width)/2, y + r);
+}
+
 function windowResized() {
-  w = window.innerWidth;
-  player.w = w/2;
-  resizeCanvas(w/2, document.getElementById('fuel_panel').offsetHeight);
-  cnv.position(w / 2,0);
-  h = document.getElementById('fuel_panel').offsetHeight;
-  y = h/2;
-  x = window.innerWidth / 8;
-  SIZE = window.innerHeight / 2;
-  r = SIZE / 5;
+  //Works for resizing vimeo but causes problems with p5 canvas
+  /*player.destroy().then(function() {
+    let options = {
+      id: id[count],
+      width: window.innerWidth / 2,
+      controls: false,
+      muted: true
+    };
+    player = new Vimeo.Player('fuel_panel', options);
+  });*/
+  player.ready().then(function() {
+    w = window.innerWidth;
+    player.w = w/2;
+    resizeCanvas(w/2, document.getElementById('fuel_panel').offsetHeight);
+    cnv.position(w / 2,0);
+    h = document.getElementById('fuel_panel').offsetHeight;
+    y = h/2;
+    x = window.innerWidth / 8;
+    SIZE = window.innerWidth / 3;
+    r = SIZE / 5;
+    rivRad = SIZE/15;
+    alterButton();
+  });
 }
 
 
