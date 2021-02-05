@@ -13,6 +13,11 @@ let rivRad = SIZE / 15;
 let w = window.innerWidth;
 let h;
 let button;
+let playButton;
+let pauseButton;
+let resetButton;
+let stopPaused = true;
+let timer;
 var options = {
   id: 480865808,
   width: window.innerWidth / 2,
@@ -45,7 +50,7 @@ function stopwatchTime(seconds, milliseconds) {
   tenSeconds = (Math.floor((seconds % 60)/10)).toString();
   units = ((seconds % 60)%10).toString();
   tenthSeconds = (Math.floor(milliseconds / 10)).toString();
-  hundredthSeconds = (milliseconds % 10).toString();
+  hundredthSeconds = (Math.floor(milliseconds % 10)).toString();
   return minutes.concat(":".concat(tenSeconds).concat(units.concat(":".concat(tenthSeconds.concat(hundredthSeconds)))));
 }
 
@@ -141,14 +146,45 @@ function mousePressed() {
   }
 }
 
+function stopwatch() {
+  time = time + 0.01;
+  redraw();
+}
+
+function playStopwatch() {
+  if (stopPaused) {
+    stopPaused = false;
+    timer = setInterval(stopwatch, 10);
+  }
+}
+
+function pauseStopwatch() {
+  if (!stopPaused) {
+    clearInterval(timer);
+    stopPaused = true;
+  }
+}
+
+
+function resetStopwatch() {
+  time = 0;
+}
+
+
 player.ready().then(function() {
   cnv = createCanvas(w/2, document.getElementById('fuel_panel').offsetHeight);
   cnv.position(w / 2,0);
   h = document.getElementById('fuel_panel').offsetHeight;
   y = h/2;
   button = createButton('Start/Stop');
+  playButton = createImg('play.jpg');
+  pauseButton = createImg('pause.jpg');
+  resetButton = createImg('reset.jpg');
   alterButton();
   button.mousePressed(playPause);
+  playButton.mousePressed(playStopwatch);
+  pauseButton.mousePressed(pauseStopwatch);
+  resetButton.mousePressed(resetStopwatch);
   player.on('timeupdate', timeChange);
   player.on('ended', timeChange);
 });
@@ -157,6 +193,12 @@ function alterButton() {
   button.style("font-size", SIZE/10);
   button.size(SIZE/2, SIZE/10);
   button.position((3 * w) / 4 - (button.width)/2, y + r);
+  playButton.size(SIZE/10,SIZE/10);
+  playButton.position(w/2 + w/8 + w/4 - SIZE/9, y - r - SIZE/10);
+  pauseButton.size(SIZE/10,SIZE/10);
+  pauseButton.position(w/2 + w/8 + w/4, y - r - SIZE/10);
+  resetButton.size(SIZE/10, SIZE/10);
+  resetButton.position(w/2 + w/8 + w/4 - SIZE/18, y - r - 2*SIZE/10);
 }
 
 function windowResized() {
@@ -185,6 +227,6 @@ function windowResized() {
   });
 }
 
-export {getSeconds, getMilliseconds, stopwatchTime};
+
 
 
