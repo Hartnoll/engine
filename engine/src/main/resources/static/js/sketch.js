@@ -185,4 +185,6 @@ function windowResized() {
   });
 }
 
+export {getSeconds, getMilliseconds, stopwatchTime};
+
 
