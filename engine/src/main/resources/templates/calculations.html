@@ -19,14 +19,13 @@
     <br>
     <br>
     <br>
-    Fuel drop length = <td><input type="text" size ="5" ></td> cm<br>
+    Fuel drop length = <td><input type="text" id="fuelDropLength" size ="5" required/></td> cm<br>
     Choose the fuel type: <br>
-    <input type="radio" name="Q1" value="A" onClick=Q1.value="*">  Petrol<br>
-    <input type="radio" name="Q1" value="B" onClick=Q1.value="**">  Diesel<br>
+    <input type="radio" name="Q1" value="A" onClick=Q1.value required/>  Petrol<br>
+    <input type="radio" name="Q1" value="B" onClick=Q1.value required/>  Diesel<br>
     <br>
     <br>
-    <br>
-    <button type="button">Next</button>
+    <input type="button" onclick="checkStepOne()" value="Next">
 </div>
 
 <div id="step2" style="background-color:#F5FFFA;height:500px;width:30%;float:left;">
@@ -35,14 +34,14 @@
     <br>
     <br>
     <br>
-    Speed = <td><input type="text" size ="5" ></td> rpm<br>
-    Torque = <td><input type="text" size ="5" ></td> Nm<br>
-    Fuel time = <td><input type="text" size ="5" ></td> s<br>
+    Speed = <td><input type="text" id="speed" size ="5" required/></td> rpm<br>
+    Torque = <td><input type="text" id="torque" size ="5" required/></td> Nm<br>
+    Fuel time = <td><input type="text" id="fuelTime" size ="5" required/></td> s<br>
     <br>
     <br>
     <br>
     <br>
-    <button type="button">Next</button>
+    <input type="button" onclick="checkStepTwo()" value="Next">
 </div>
 
 <div id="step3" style="background-color:#F0FFF0;height:500px;width:40%;float:left;">
@@ -51,15 +50,106 @@
     <br>
     <br>
     <br>
-    Fuel Flow = <td><input type="text" size ="5" ></td> kg/s (3 sig.fig)<br>
-    Brake Power = <td><input type="text" size ="5" ></td> W (3 s.f)<br>
-    Fuel Power = <td><input type="text" size ="5" ></td> W (3 s.f)<br>
-    Brake Thermal Efficiency = <td><input type="text" size ="5" ></td> % (3 s.f)<br>
+    Fuel Flow = <td><input type="text" size ="5" required/></td> kg/s (3 sig.fig)<br>
+    Brake Power = <td><input type="text" size ="5" required/></td> W (3 s.f)<br>
+    Fuel Power = <td><input type="text" size ="5" required/></td> W (3 s.f)<br>
+    Brake Thermal Efficiency = <td><input type="text" size ="5" required/></td> % (3 s.f)<br>
     <br>
     <br>
     <br>
     <button type="button">Check</button>
 </div>
+
+<script type="text/javascript">
+    function selectFuelType(name) {
+        var j = 0;
+        var fuelType = document.getElementsByName(name)
+        for (i = 0; i < fuelType.length; i++) {
+            if (fuelType[i].checked) {
+                j++;
+                // alert("checked" + fuelType[i].value);
+                break;
+            }
+        }
+        if (j == 0) return false;
+        else return true;
+    }
+
+    function checkFuelType(name) {
+        var fuelType = document.getElementsByName(name)
+        for (i = 0; i < fuelType.length; i++) {
+            if (fuelType[i].checked) {
+                return fuelType[i].value;
+                break;
+            }
+        }
+    }
+
+    // function checkFuelType() {
+    //     var q1 = selectFuelType("Q1");
+    //     if (q1 == false) {
+    //         alert("Please choose a fuel type!");
+    //         return false;
+    //     }
+    // }
+
+    function checkFuelDropLength(id){
+        var fuelDropLength = document.getElementById(id);
+        alert(fuelDropLength.value);
+        if (fuelDropLength.value != "2") {
+            alert("please enter a valid fuel drop length!");
+            return false;
+        }
+        return true;
+    }
+
+    function checkStepOne(){
+        checkFuelDropLength("fuelDropLength");
+        // checkFuelType();
+        var q1 = selectFuelType("Q1");
+        if (q1 == false) {
+            alert("Please choose a fuel type!");
+        }
+    }
+
+    function checkStepTwo(){
+        var speed = document.getElementById("speed");
+        var torque = document.getElementById("torque");
+        var fuelTime = document.getElementById("fuelTime");
+        var s = parseInt(speed.value);
+        var t = parseFloat(torque.value);
+        var ft = parseFloat(fuelTime.value);
+        var allSpeed = [1400,1500,1600,1700,1800,1900,2000,2100,2200,2300,2400];
+
+        for (i = 0; i < allSpeed.length; i++){
+            if (s == allSpeed[i]){
+                alert(s);
+                break;
+            }
+            if (i == allSpeed.length - 1){
+                alert("This is not a valid speed!")
+            }
+        }
+
+        if (checkFuelType("Q1") == "A"){
+            if (t >= 26 || t <=19){
+                alert("This is not a valid torque for petrol!")
+            }
+            if (ft >= 22 || ft <= 14){
+                alert("This is not a valid fuel time for petrol!")
+            }
+        }
+
+        if (checkFuelType("Q1") == "B") {
+            if (t >= 32 || t <= 26) {
+                alert("This is not a valid torque for diesel!")
+            }
+            if (ft >= 10 || ft <= 25) {
+                alert("This is not a valid fuel time for diesel!")
+            }
+        }
+    }
+</script>
 
 </body>
 </html>
