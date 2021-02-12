@@ -125,7 +125,7 @@ function getMilliseconds(time) {
 var timeChange = function(data) {
   time = data.seconds;
   redraw();
-}
+};
 
 function mousePressed() {
   if (dist(mouseX,mouseY, x, y) < r) {
@@ -177,16 +177,14 @@ player.ready().then(function() {
   h = document.getElementById('fuel_panel').offsetHeight;
   y = h/2;
   button = createButton('Start/Stop');
-  playButton = createImg('play.jpg');
-  pauseButton = createImg('pause.jpg');
-  resetButton = createImg('reset.jpg');
+  playButton = createImg('play.png');
+  pauseButton = createImg('pause.png');
+  resetButton = createImg('reset.png');
   alterButton();
   button.mousePressed(playPause);
   playButton.mousePressed(playStopwatch);
   pauseButton.mousePressed(pauseStopwatch);
   resetButton.mousePressed(resetStopwatch);
-  player.on('timeupdate', timeChange);
-  player.on('ended', timeChange);
 });
 
 function alterButton() {
