@@ -21,8 +21,7 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           key: backend-cache-v1-{{ checksum "package.json" }}
-      - run: npm install
-      - run: npm test
+      - run: mocha
       - save_cache:
           paths:
             - ~/.m2
