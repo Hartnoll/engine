@@ -18,6 +18,7 @@ let pauseButton;
 let resetButton;
 let stopPaused = true;
 let timer;
+let stopwatchFunctions = new StopwatchFunctions();
 var options = {
   id: 480865808,
   width: window.innerWidth / 2,
@@ -40,19 +41,19 @@ function playPause() {
   }
 }
 
-function stopwatchTime(seconds, milliseconds) {
-  let minutes;
-  let tenSeconds;
-  let units;
-  let tenthSeconds;
-  let hundredthSeconds;
-  minutes = (Math.floor(seconds / 60)).toString();
-  tenSeconds = (Math.floor((seconds % 60)/10)).toString();
-  units = ((seconds % 60)%10).toString();
-  tenthSeconds = (Math.floor(milliseconds / 10)).toString();
-  hundredthSeconds = (Math.floor(milliseconds % 10)).toString();
-  return minutes.concat(":".concat(tenSeconds).concat(units.concat(":".concat(tenthSeconds.concat(hundredthSeconds)))));
-}
+// function stopwatchTime(seconds, milliseconds) {
+//   let minutes;
+//   let tenSeconds;
+//   let units;
+//   let tenthSeconds;
+//   let hundredthSeconds;
+//   minutes = (Math.floor(seconds / 60)).toString();
+//   tenSeconds = (Math.floor((seconds % 60)/10)).toString();
+//   units = ((seconds % 60)%10).toString();
+//   tenthSeconds = (Math.floor(milliseconds / 10)).toString();
+//   hundredthSeconds = (Math.floor(milliseconds % 10)).toString();
+//   return minutes.concat(":".concat(tenSeconds).concat(units.concat(":".concat(tenthSeconds.concat(hundredthSeconds)))));
+// }
 
 
 function draw() {
@@ -78,7 +79,7 @@ function draw() {
   textAlign(CENTER);
   textSize(SIZE / 10);
   textFont(myFont);
-  text(stopwatchTime(getSeconds(time), getMilliseconds(time)), x + w/4, y);
+  text(stopwatchFunctions.stopwatchTime(stopwatchFunctions.getSeconds(time), stopwatchFunctions.getMilliseconds(time)), x + w/4, y);
   pop();
   push();
   fill(0);
@@ -113,14 +114,14 @@ function drawRivet(xCoord, yCoord) {
   line(xCoord, yCoord + rivRad/2, xCoord, yCoord - rivRad/2);
 }
 
-function getSeconds(time) {
-  return Math.trunc(time);
-}
-
-function getMilliseconds(time) {
-  var decimal = time % 1;
-  return (100 *(decimal).toFixed(2))
-}
+// function getSeconds(time) {
+//   return Math.trunc(time);
+// }
+//
+// function getMilliseconds(time) {
+//   var decimal = time % 1;
+//   return (100 *(decimal).toFixed(2))
+// }
 
 var timeChange = function(data) {
   time = data.seconds;

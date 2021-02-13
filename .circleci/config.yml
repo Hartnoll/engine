@@ -11,6 +11,23 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - ~/engine
+  
+  testjs:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/engine/engine/src/main/resources/static/js
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: backend-cache-v1-{{ checksum "package.json" }}
+      - run: sudo npm install npm@latest -g
+      - run: npm install chai mocha --save-dev
+      - run: npm test
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: backend-cache-v1-{{ checksum "package.json" }}
 
   test:
     docker:
@@ -59,6 +76,9 @@ workflows:
   workflow:
     jobs:
       - get_code
+      - testjs:
+          requires:
+            - get_code
       - test:
           filters:
             branches:
@@ -73,3 +93,4 @@ workflows:
               only: main
           requires:
             - test
+            - testjs
