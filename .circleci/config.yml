@@ -22,8 +22,6 @@ jobs:
       - restore_cache:
           key: backend-cache-v1-{{ checksum "package.json" }}
       - run: npm install
-      - run: npm install chai -g
-      - run: npm install mocha -g
       - run: npm test
       - save_cache:
           paths:
