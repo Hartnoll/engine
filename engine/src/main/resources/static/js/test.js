@@ -8,13 +8,28 @@ const assert = require('assert');
 const Stopwatch = require('../js/stopwatch');
 let stopwatch;
 let second;
-describe('stopwatch tests', function() {
+let millisecond;
+describe('Stopwatch tests', function() {
   stopwatch = new Stopwatch();
-  it('should get seconds', function(done) {
+  it('getSeconds should return seconds element', function(done) {
     second = stopwatch.getSeconds(1.234);
     assert.equal(second, 1);
+    second = stopwatch.getSeconds(5.567);
+    assert.equal(second, 5);
+    second = stopwatch.getSeconds(3.0);
+    assert.equal(second, 3);
     done();
   })
 
-})
+  it('getMilliseconds should return milliseconds element', function(done) {
+    millisecond = stopwatch.getMilliseconds(2.345);
+    assert.equal(millisecond, 35);
+    millisecond = stopwatch.getMilliseconds(5.244);
+    assert.equal(millisecond, 24);
+    millisecond = stopwatch.getMilliseconds(3.0000);
+    assert.equal(millisecond, 0);
+    done();
+  })
+
+});
 
