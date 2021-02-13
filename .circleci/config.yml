@@ -21,7 +21,9 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           key: backend-cache-v1-{{ checksum "package.json" }}
-      - run: mocha
+      - run: sudo npm install npm@latest -g
+      - run: npm install chai -g
+      - run: npm install mocha -g
       - save_cache:
           paths:
             - ~/.m2
