@@ -18,6 +18,7 @@ let pauseButton;
 let resetButton;
 let stopPaused = true;
 let timer;
+let buffering;
 let stopwatchFunctions = new StopwatchFunctions();
 var options = {
   id: 480865808,
@@ -79,7 +80,14 @@ function draw() {
   textAlign(CENTER);
   textSize(SIZE / 10);
   textFont(myFont);
-  text(stopwatchFunctions.stopwatchTime(stopwatchFunctions.getSeconds(time), stopwatchFunctions.getMilliseconds(time)), x + w/4, y);
+  let stopTime = stopwatchFunctions.stopwatchTime(stopwatchFunctions.getSeconds(time), stopwatchFunctions.getMilliseconds(time));
+  text(stopTime[0], x + w/4 - (3*SIZE/25), y);
+  text(stopTime[1], x + w/4 - (2*SIZE/25), y);
+  text(stopTime[2], x + w/4 - (SIZE/25), y);
+  text(stopTime[3], x + w/4, y);
+  text(stopTime[4], x + w/4 + (SIZE/25), y);
+  text(stopTime[5], x + w/4 + (2*SIZE/25), y);
+  text(stopTime[6], x + w/4 + (3*SIZE/25), y);
   pop();
   push();
   fill(0);
@@ -200,9 +208,26 @@ function alterButton() {
   resetButton.position(w/2 + w/8 + w/4 - SIZE/18, y - r - 2*SIZE/10);
 }
 
+var onBuffer = function(data) {
+  if (!stopPaused) {
+    buffering = true;
+  }
+  pauseStopwatch();
+};
+var offBuffer = function(data) {
+  if (buffering) {
+    playStopwatch();
+    buffering = false;
+  }
+};
+
+player.on('bufferstart', onBuffer);
+player.on('bufferend', offBuffer);
+
+/*
 function windowResized() {
   //Works for resizing vimeo but causes problems with p5 canvas
-  /*player.destroy().then(function() {
+  player.destroy().then(function() {
     let options = {
       id: id[count],
       width: window.innerWidth / 2,
@@ -210,7 +235,7 @@ function windowResized() {
       muted: true
     };
     player = new Vimeo.Player('fuel_panel', options);
-  });*/
+  });
   player.ready().then(function() {
     w = window.innerWidth;
     player.w = w/2;
@@ -224,7 +249,7 @@ function windowResized() {
     rivRad = SIZE/15;
     alterButton();
   });
-}
+}*/
 
 
 
