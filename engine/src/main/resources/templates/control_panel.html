@@ -9,7 +9,7 @@
     <script src="js/stopwatch.js"></script>
     <link rel="stylesheet" href="js/style.css">
 </head>
-<body>
+<>
 <div id="fuel_panel" class="video"></div>
 <script src="https://player.vimeo.com/api/player.js"></script>
 <script src="js/sketch.js"></script>
@@ -21,43 +21,21 @@
         }
     </style>
     <TR>
-        <TH>Engine speed</TH>
-        <TH>Fuel drop length</TH>
-        <TH>Torque</TH>
-        <TH>Fuel Time</TH>
-    </TR>
-    <tbody>
-    <tbody>
-    <td>1400</td>
-    <td><input type="text" size ="50" ></td>
-    <td><input type="text" size ="50" ></td>
-    <td><input type="text" size ="50"></td>
-    </tbody>
-    </TR>
-    <TR>
-        <td>1500</td>
-        <td><input type="text" size ="50"></td>
-        <td><input type="text"size ="50" ></td>
-        <td><input type="text"size ="50" ></td>
-    <TR>
-        <td>1600</td>
-        <td><input type="text"size ="50"></td>
-        <td><input type="text"size ="50" ></td>
-        <td><input type="text"size ="50" ></td>
-    </TR>
-    <TR>
-        <td>1700</td>
-        <td><input type="text"size ="50"></td>
-        <td><input type="text"size ="50" ></td>
-        <td><input type="text"size ="50" ></td>
-    </TR>
-    <TR>
-        <td>1800</td>
-        <td><input type="text"size ="50"></td>
-        <td><input type="text" size ="50"></td>
-        <td><input type="text"size ="50" ></td>
+        <TH>Engine speed (m/s)</TH>
+        <TH>Fuel drop length (m)</TH>
+        <TH>Torque (Nm) </TH>
+        <TH>Fuel Time (s) </TH>
     </TR>
 
 </TABLE>
-</body>
+<button type="button" onclick="add_fields()" >Add a new reading</button>
+<script>
+    function add_fields() {
+        document.getElementById("datasheet").insertRow(-1).innerHTML = '<tr><td><textarea name ="Speed" placeholder="Enter engine speed"  id="speed" style = "resize: none;"></textarea></td><td><textarea name="Fuel drop" placeholder ="Enter fuel drop length"  ' +
+            'id="fuel drop" style="resize:none;"></textarea></td >' +
+            '<td><textarea name="Torque" placeholder ="Enter torque" ' +
+            'id="Torque" style="resize: none;"></textarea></td > <td><textarea name="Fuel Time" placeholder ="Enter fuel drop time"  ' +
+            'id="Time" style="resize:none;"></textarea></td ></tr>\'</tr>';
+    }
+</script>
 </html>
