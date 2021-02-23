@@ -2,14 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Virtual Engine Lab</title>
     <link rel="shortcut icon" type="image/jpg" href="bristol.jpg"/>
-    <link rel="stylesheet" href="js/style.css">
+    <link href="welcome.css" rel="stylesheet">
+    <!--CSS Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<p>Hello and welcome to the MVP of the virtual Engine Lab for the CAME school at the University of Bristol</p>
-<p>Please note this is a very bare bones implementation of our product, purely designed to show you our current ideas</p>
-<p><a href="/control_panel">Control Panel</a></p>
-<p><a href="/calculations">Calculations</a></p>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Application Pages:</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/control_panel">Control Panel <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/calculations">Calculations</a>
+            </li>
+
+<!--            <li class="nav-item dropdown">-->
+<!--                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>-->
+<!--                <div class="dropdown-menu" aria-labelledby="dropdown01">-->
+<!--                    <a class="dropdown-item" href="#">Action</a>-->
+<!--                    <a class="dropdown-item" href="#">Another action</a>-->
+<!--                    <a class="dropdown-item" href="#">Something else here</a>-->
+<!--                </div>-->
+<!--            </li>-->
+        </ul>
+    </div>
+</nav>
+
+<main role="main">
+
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Virtual ICE lab</h1>
+            <p>Welcome to the online recreation of the combustion engine lab for the engineering department at the University of Bristol. On this page you will find links to the relevant page(s) to complete the lab as well as some pre-lab
+            information and instructions on how to use the application we have created.</p>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Pre-lab information</h2>
+                <p>The purpose of this lab is to study the effects that rpm has on the internal combustion engine.<br><br> This application has been created as a digital alternative to the 'Engines Laboratory' so that it can be carried out
+                in an online setting.<br> Make sure to have completed all of the pre-lab exercises and read the information that is found on the unit page on blackboard.</p>
+                <p><a class="btn btn-secondary" href="https://www.ole.bris.ac.uk/webapps/blackboard/content/listContentEditable.jsp?content_id=_4013567_1&course_id=_235756_1" role="button" target="_blank">Blackboard Unit Page &raquo;</a></p>
+            </div>
+            <div class="col-md-8">
+                <h2>Application Tutorial</h2>
+                <p>Upon completing the pre-lab exercises and reading up on the required material it is now time to complete the lab.<br> Once opening the control page you
+                    will see a video on the left and a dial along with a stopwatch on the right. Underneath these you will see a  </p>
+                <p><a class="btn btn-secondary" href="#" role="button" target="_blank">View details &raquo;</a></p>
+            </div>
+            <div class="col-md-2">
+                <h2></h2>
+            </div>
+        </div>
+
+        <hr>
+
+    </div> <!-- /container -->
+
+</main>
+
+<footer class="container">
+    <p>&copy; University of Bristol 2020-2021</p>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
