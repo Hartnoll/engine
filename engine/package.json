@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "tabulator-tables": "^4.9.3"
+  }
+}
