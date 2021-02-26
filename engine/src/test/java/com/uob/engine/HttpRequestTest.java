@@ -23,10 +23,4 @@ public class HttpRequestTest {
         ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port+"/control_panel", String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
-
-    @Test
-    public void LoadsCalculationsCorrectly() throws Exception {
-        ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port+"/calculations", String.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-    }
 }

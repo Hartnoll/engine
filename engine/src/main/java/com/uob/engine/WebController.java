@@ -10,8 +10,4 @@ public class WebController {
     @GetMapping(value="/control_panel")
     public void controlPanel() {
     }
-
-    @GetMapping(value="/calculations")
-    public void calculations() {
-    }
 }
