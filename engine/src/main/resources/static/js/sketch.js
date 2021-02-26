@@ -15,7 +15,9 @@ let h;
 let button;
 let playButton;
 let pauseButton;
+let clearButton;
 let resetButton;
+let addRowButton;
 let stopPaused = true;
 let timer;
 let buffering;
@@ -27,6 +29,7 @@ var options = {
   muted: true
 };
 let player = new Vimeo.Player('fuel_panel', options);
+
 
 function preload() {
   myFont = loadFont('js/digital-7.ttf');
@@ -186,11 +189,19 @@ player.ready().then(function() {
   h = document.getElementById('fuel_panel').offsetHeight;
   y = h/2;
   button = createButton('Start/Stop');
+  addRowButton = createButton('Add Row');
+  clearButton = createButton('Clear Table');
   playButton = createImg('play.png');
   pauseButton = createImg('pause.png');
   resetButton = createImg('reset.png');
   alterButton();
   button.mousePressed(playPause);
+  addRowButton.mousePressed(function () {
+    table.addRow({})
+  });
+  clearButton.mousePressed(function () {
+    table.clearData();
+  });
   playButton.mousePressed(playStopwatch);
   pauseButton.mousePressed(pauseStopwatch);
   resetButton.mousePressed(resetStopwatch);
@@ -200,6 +211,12 @@ function alterButton() {
   button.style("font-size", SIZE/10);
   button.size(SIZE/2, SIZE/10);
   button.position((3 * w) / 4 - (button.width)/2, y + r);
+  addRowButton.style("font-size", SIZE/15);
+  addRowButton.size(SIZE/5, SIZE/12);
+  addRowButton.position((3 * w) / 4 + SIZE/45, y + r + SIZE/9);
+  clearButton.style("font-size", SIZE/15);
+  clearButton.size(SIZE/5, SIZE/12);
+  clearButton.position((3 * w) / 4 - addRowButton.width - SIZE/45, y + r + SIZE/9);
   playButton.size(SIZE/10,SIZE/10);
   playButton.position(w/2 + w/8 + w/4 - SIZE/9, y - r - SIZE/10);
   pauseButton.size(SIZE/10,SIZE/10);

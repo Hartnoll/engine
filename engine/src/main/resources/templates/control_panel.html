@@ -50,10 +50,6 @@
 
 </head>
 <body>
-<div>
-    <button id="add-row">Add Blank Row</button>
-    <button id="clear">Empty the table</button>
-</div>
 
 <div id="example-table"></div>
 <script type="text/javascript">
@@ -115,22 +111,11 @@
         ],
 
     });
-    //Add row on "Add Row" button click
-    document.getElementById("add-row").addEventListener("click", function(){
-        table.addRow({});
-    });
-
-    //Clear table on "Empty the table" button click
-    document.getElementById("clear").addEventListener("click", function(){
-        table.clearData()
-    });
-
-
 </script>
 </body>
 
 <div id="Engine Calculation" style="width:100%"></div>
-<div id="header" style="background-color:#E6E6FA;text-align:center; border-style:solid; border-color:grey">
+<div id="header" style="background-color:#C0C0C0;text-align:center; border-style:solid; border-color:grey">
     <h1 style="margin-bottom:0;">Engine Calculation</h1>
 </div>
 
