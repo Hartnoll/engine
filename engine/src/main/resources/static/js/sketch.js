@@ -188,14 +188,16 @@ player.ready().then(function() {
   cnv.position(w / 2,0);
   h = document.getElementById('fuel_panel').offsetHeight;
   y = h/2;
-  button = createButton('Start/Stop');
+  button = createButton('Download Excel Sheet');
   addRowButton = createButton('Add Row');
   clearButton = createButton('Clear Table');
   playButton = createImg('play.png');
   pauseButton = createImg('pause.png');
   resetButton = createImg('reset.png');
   alterButton();
-  button.mousePressed(playPause);
+  button.mousePressed(function() {
+    table.download("xlsx", "engine-data.xlsx", {sheetName:"My Data"});
+  });
   addRowButton.mousePressed(function () {
     table.addRow({})
   });
@@ -209,7 +211,7 @@ player.ready().then(function() {
 
 function alterButton() {
   button.style("font-size", SIZE/10);
-  button.size(SIZE/2, SIZE/10);
+  button.size(SIZE/5, SIZE/10);
   button.position((3 * w) / 4 - (button.width)/2, y + r);
   addRowButton.style("font-size", SIZE/15);
   addRowButton.size(SIZE/5, SIZE/12);
