@@ -45,7 +45,7 @@ function checkInput(id) {
 
 function checkFuelDropLength(id) {
     var fuelDropLength = document.getElementById(id);
-    if (fuelDropLength.value < 0 || fuelDropLength.value > 7.5) {
+    if (fuelDropLength.value < 0 || fuelDropLength.value > 15) {
         Swal.fire({
             title: "Sorry...",
             text: "This is not a valid fuel drop length!",
@@ -122,7 +122,7 @@ function checkStepTwo() {
                 });
                 return false;
             }
-            if (ft >= 22 || ft <= 14) {
+            if (ft >= 125 || ft < 0) {
                 Swal.fire({
                     title: "Sorry...",
                     text: "This is not a valid fuel time for petrol!",
