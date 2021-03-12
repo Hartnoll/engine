@@ -38,6 +38,32 @@ function preload() {
   myFont = loadFont('js/digital-7.ttf');
 }
 
+function setup() {
+  cnv = createCanvas(w/2, (w/2) / 1.7777777777777);
+  cnv.position(w / 2,0);
+  h = (w/2) / 1.77777777777;
+  y = h/2;
+  button = createButton('Download Excel Sheet');
+  addRowButton = createButton('Add Row');
+  clearButton = createButton('Clear Table');
+  playButton = createImg('play.png');
+  pauseButton = createImg('pause.png');
+  resetButton = createImg('reset.png');
+  alterButton();
+  button.mousePressed(function() {
+    table.download("xlsx", "engine-data.xlsx", {sheetName:"My Data"});
+  });
+  addRowButton.mousePressed(function () {
+    table.addRow({})
+  });
+  clearButton.mousePressed(function () {
+    table.clearData();
+  });
+  playButton.mousePressed(playStopwatch);
+  pauseButton.mousePressed(pauseStopwatch);
+  resetButton.mousePressed(resetStopwatch);
+}
+
 function playPause() {
   if (paused) {
     paused = false;
@@ -211,31 +237,6 @@ function resetStopwatch() {
 }
 
 
-player.ready().then(function() {
-  cnv = createCanvas(w/2, document.getElementById('fuel_panel').offsetHeight);
-  cnv.position(w / 2,0);
-  h = document.getElementById('fuel_panel').offsetHeight;
-  y = h/2;
-  button = createButton('Download Excel Sheet');
-  addRowButton = createButton('Add Row');
-  clearButton = createButton('Clear Table');
-  playButton = createImg('play.png');
-  pauseButton = createImg('pause.png');
-  resetButton = createImg('reset.png');
-  alterButton();
-  button.mousePressed(function() {
-    table.download("xlsx", "engine-data.xlsx", {sheetName:"My Data"});
-  });
-  addRowButton.mousePressed(function () {
-    table.addRow({})
-  });
-  clearButton.mousePressed(function () {
-    table.clearData();
-  });
-  playButton.mousePressed(playStopwatch);
-  pauseButton.mousePressed(pauseStopwatch);
-  resetButton.mousePressed(resetStopwatch);
-});
 
 function alterButton() {
   button.style("font-size", SIZE/10);
