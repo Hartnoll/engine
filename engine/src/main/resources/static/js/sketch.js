@@ -22,6 +22,7 @@ let resetButton;
 let addRowButton;
 let stopPaused = true;
 let timer;
+let ratio = 16/9;
 let buffering;
 let stopwatchFunctions = new StopwatchFunctions();
 let fuel = 1;
@@ -39,9 +40,9 @@ function preload() {
 }
 
 function setup() {
-  cnv = createCanvas(w/2, (w/2) / 1.7777777777777);
+  cnv = createCanvas(w/2, (w/2) / ratio);
   cnv.position(w / 2,0);
-  h = (w/2) / 1.77777777777;
+  h = (w/2) / ratio;
   y = h/2;
   button = createButton('Download Excel Sheet');
   addRowButton = createButton('Add Row');
