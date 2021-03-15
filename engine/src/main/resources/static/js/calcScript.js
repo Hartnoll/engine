@@ -175,7 +175,7 @@ function data(x) {
     if (x >= 1000) {
         return Math.round(x)
     }
-    return x.toPrecision(3)
+    return x.toDecimal(3)
 }
 
 function checkStepThree() {
@@ -198,7 +198,7 @@ function checkStepThree() {
 
     if (a & b & c & d) {
         if (checkFuelType("Q1") == "A") {
-            var m = (755 * ((fuelDropLength.value * 9.04 / 2) / 10 ** 6)) / ft
+            var m = (755 * ((fuelDropLength.value * 9.04 / 2) / 10 ** 6)) / ft * 3600
             if (flow.value != data(m)) {
                 Swal.fire({
                     title: "Sorry...",
@@ -208,7 +208,7 @@ function checkStepThree() {
                 return false;
             }
 
-            var n = 2 * Math.PI * t * s / 60
+            var n = 2 * Math.PI * t * s / 60000
             if (bPower.value != data(n)) {
                 Swal.fire({
                     title: "Sorry...",
@@ -218,7 +218,7 @@ function checkStepThree() {
                 return false;
             }
 
-            var p = 1000 * (m * 44400)
+            var p = 1000 * (m * 44400)/1000
             if (fPower.value != data(p)) {
                 Swal.fire({
                     title: "Sorry...",
