@@ -4,7 +4,9 @@ let x = window.innerWidth / 8;
 let y;
 let r = SIZE / 5;
 let speeds = ["1400","1500","1600", "1700", "1800", "1900", "2000","2100","2200","2300","2400"];
-let id = ["480865808", "480866073", "480866431", "480866534", "484084134", "484084340", "484084647", "484084941", "490413688", "490414048", "490451670"];
+let petrol = ["480865808", "480866073", "480866431", "480866534", "484084134", "484084340", "484084647", "484084941", "490413688", "490414048", "490451670"];
+let id = petrol;
+let diesel = ["480865808", "480866073", "480866431", "480866534", "484084134", "484084340", "484084647", "484084941", "490413688", "490414048", "490451670"];
 let count = 0;
 let paused = true;
 let myFont;
@@ -20,8 +22,10 @@ let resetButton;
 let addRowButton;
 let stopPaused = true;
 let timer;
+let ratio = 16/9;
 let buffering;
 let stopwatchFunctions = new StopwatchFunctions();
+let fuel = 1;
 var options = {
   id: 480865808,
   width: window.innerWidth / 2,
@@ -33,6 +37,32 @@ let player = new Vimeo.Player('fuel_panel', options);
 
 function preload() {
   myFont = loadFont('js/digital-7.ttf');
+}
+
+function setup() {
+  cnv = createCanvas(w/2, (w/2) / ratio);
+  cnv.position(w / 2,0);
+  h = (w/2) / ratio;
+  y = h/2;
+  button = createButton('Download Excel Sheet');
+  addRowButton = createButton('Add Row');
+  clearButton = createButton('Clear Table');
+  playButton = createImg('play.png');
+  pauseButton = createImg('pause.png');
+  resetButton = createImg('reset.png');
+  alterButton();
+  button.mousePressed(function() {
+    table.download("xlsx", "engine-data.xlsx", {sheetName:"My Data"});
+  });
+  addRowButton.mousePressed(function () {
+    table.addRow({})
+  });
+  clearButton.mousePressed(function () {
+    table.clearData();
+  });
+  playButton.mousePressed(playStopwatch);
+  pauseButton.mousePressed(pauseStopwatch);
+  resetButton.mousePressed(resetStopwatch);
 }
 
 function playPause() {
@@ -65,6 +95,23 @@ function draw() {
   push();
   fill('silver');
   ellipse(x,y,2*r,2*r);
+  pop();
+  push();
+  fill('black');
+  ellipse(x + w/8, y, r/2, r/2);
+  pop();
+  push();
+  stroke('silver');
+  strokeWeight(2);
+  var angle = fuel * PI/4;
+  line(x + w/8, y, (x + w/8 + (r/4 * sin(angle))), (y - (r/4 *cos(angle))));
+  pop();
+  push();
+  fill('black');
+  textAlign(CENTER);
+  textSize(SIZE/25);
+  text("D", x + w/8 - r/4, y - r/4);
+  text("P", x + w/8 + r/4, y - r/4);
   pop();
   push();
   fill('black');
@@ -101,7 +148,7 @@ function draw() {
   textAlign(CENTER);
   textSize(SIZE / 10);
   textFont(myFont);
-  text(speeds[count], x, y - r -((SIZE/10)*1.3) + (SIZE/11));
+  text(speeds[count], x, y - r -((SIZE/10)*1.3) + (SIZE/12));
   pop();
   push();
   stroke('black');
@@ -154,7 +201,15 @@ function mousePressed() {
       }
     }
   player.loadVideo(id[count])
-
+  }
+  if (dist(mouseX,mouseY, x + w/8, y) < r/4) {
+    fuel = fuel * -1;
+    if (fuel < 0) {
+      id = diesel;
+    }else {
+      id = petrol;
+    }
+    player.loadVideo(id[count])
   }
 }
 
@@ -183,33 +238,10 @@ function resetStopwatch() {
 }
 
 
-player.ready().then(function() {
-  cnv = createCanvas(w/2, document.getElementById('fuel_panel').offsetHeight);
-  cnv.position(w / 2,0);
-  h = document.getElementById('fuel_panel').offsetHeight;
-  y = h/2;
-  button = createButton('Start/Stop');
-  addRowButton = createButton('Add Row');
-  clearButton = createButton('Clear Table');
-  playButton = createImg('play.png');
-  pauseButton = createImg('pause.png');
-  resetButton = createImg('reset.png');
-  alterButton();
-  button.mousePressed(playPause);
-  addRowButton.mousePressed(function () {
-    table.addRow({})
-  });
-  clearButton.mousePressed(function () {
-    table.clearData();
-  });
-  playButton.mousePressed(playStopwatch);
-  pauseButton.mousePressed(pauseStopwatch);
-  resetButton.mousePressed(resetStopwatch);
-});
 
 function alterButton() {
   button.style("font-size", SIZE/10);
-  button.size(SIZE/2, SIZE/10);
+  button.size(SIZE/5, SIZE/10);
   button.position((3 * w) / 4 - (button.width)/2, y + r);
   addRowButton.style("font-size", SIZE/15);
   addRowButton.size(SIZE/5, SIZE/12);
