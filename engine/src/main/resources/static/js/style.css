@@ -3,6 +3,7 @@ html, body {
   margin: 0px;
   padding: 0px;
   font-family: Helvetica, sans-serif;
+  color: black;
 }
 
 canvas {
@@ -21,7 +22,7 @@ button {
   text-align: center;
   text-decoration: none;
   outline: none;
-  color: #fff;
+  color: black;
   background-color: #4CAF50;
   border: none;
   border-radius: 15px;
@@ -51,7 +52,3 @@ a.link_button {
   text-decoration: none;
 }
 
-#datasheet {
-  position: static;
-
-}

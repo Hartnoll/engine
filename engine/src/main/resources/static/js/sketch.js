@@ -148,7 +148,7 @@ function draw() {
   textAlign(CENTER);
   textSize(SIZE / 10);
   textFont(myFont);
-  text(speeds[count], x, y - r -((SIZE/10)*1.3) + (SIZE/11));
+  text(speeds[count], x, y - r -((SIZE/10)*1.3) + (SIZE/12));
   pop();
   push();
   stroke('black');
