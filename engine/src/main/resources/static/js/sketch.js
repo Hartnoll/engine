@@ -108,6 +108,13 @@ function playPause() {
 
 
 function draw() {
+  if (dist(mouseX,mouseY, x, y) < r) {
+    cursor('pointer');
+  } else if (dist(mouseX,mouseY, x + w/8, y) < r/4) {
+    cursor('pointer');
+  } else {
+    cursor('default');
+  }
   background(230);
   push();
   fill('silver');
