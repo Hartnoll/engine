@@ -114,7 +114,7 @@ function checkStepTwo() {
         }
 
         if (checkFuelType("Q1") == "A") {
-            if (t >= 26 || t <= 19) {
+            if (t >= 27 || t <= 18) {
                 Swal.fire({
                     title: "Sorry...",
                     text: "This is not a valid torque for petrol!",
@@ -130,7 +130,7 @@ function checkStepTwo() {
                 });
                 return false;
             }
-            if (19 < t < 26 & 14 < ft < 22) {
+            if (18 < t < 27 & 0 < ft < 125) {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -142,7 +142,7 @@ function checkStepTwo() {
         }
 
         if (checkFuelType("Q1") == "B") {
-            if (t >= 32 || t <= 26) {
+            if (t >= 33 || t <= 25) {
                 Swal.fire({
                     title: "Sorry...",
                     text: "This is not a valid torque for diesel!",
@@ -150,7 +150,7 @@ function checkStepTwo() {
                 });
                 return false;
             }
-            if (ft >= 25 || ft <= 10) {
+            if (ft >= 125 || ft < 0) {
                 Swal.fire({
                     title: "Sorry...",
                     text: "This is not a valid fuel time for diesel!",
@@ -158,7 +158,7 @@ function checkStepTwo() {
                 });
                 return false;
             }
-            if (26 < t < 32 & 10 < ft < 25) {
+            if (25 < t < 33 & 0 < ft < 125) {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -172,10 +172,7 @@ function checkStepTwo() {
 }
 
 function data(x) {
-    if (x >= 1000) {
-        return Math.round(x)
-    }
-    return x.toDecimal(3)
+    return x.toDecimal(2)
 }
 
 function checkStepThree() {
@@ -198,7 +195,7 @@ function checkStepThree() {
 
     if (a & b & c & d) {
         if (checkFuelType("Q1") == "A") {
-            var m = (755 * ((fuelDropLength.value * 9.04 / 2) / 10 ** 6)) / ft * 3600
+            var m = 3600 * (755 * ((fuelDropLength.value * 9.04 / 2) / 10 ** 6)) / ft
             if (flow.value != data(m)) {
                 Swal.fire({
                     title: "Sorry...",
@@ -251,7 +248,7 @@ function checkStepThree() {
         }
 
         if (checkFuelType("Q1") == "B") {
-            var m = (832 * ((fuelDropLength.value * 9.04 / 2) / 10 ** 6)) / ft
+            var m = 3600 * (832 * ((fuelDropLength.value * 9.04 / 2) / 10 ** 6)) / ft
             if (flow.value != data(m)) {
                 Swal.fire({
                     title: "Sorry...",
@@ -261,7 +258,7 @@ function checkStepThree() {
                 return false;
             }
 
-            var n = 2 * Math.PI * t * s / 60
+            var n = 2 * Math.PI * t * s / 60000
             if (bPower.value != data(n)) {
                 Swal.fire({
                     title: "Sorry...",
@@ -271,7 +268,7 @@ function checkStepThree() {
                 return false;
             }
 
-            var p = 1000 * (m * 43400)
+            var p = 1000 * (m * 43400) / 1000
             if (fPower.value != data(p)) {
                 Swal.fire({
                     title: "Sorry...",
