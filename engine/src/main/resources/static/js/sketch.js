@@ -14,12 +14,15 @@ let time = 0;
 let rivRad = SIZE / 15;
 let w = window.innerWidth;
 let h;
+let helpFont;
 let button;
 let playButton;
 let pauseButton;
 let clearButton;
 let resetButton;
 let addRowButton;
+let helpButton;
+let help = false;
 let stopPaused = true;
 let timer;
 let ratio = 16/9;
@@ -37,6 +40,7 @@ let player = new Vimeo.Player('fuel_panel', options);
 
 function preload() {
   myFont = loadFont('js/digital-7.ttf');
+  helpFont = loadFont('js/typewriter.ttf');
 }
 
 function setup() {
@@ -50,6 +54,7 @@ function setup() {
   playButton = createImg('play.png');
   pauseButton = createImg('pause.png');
   resetButton = createImg('reset.png');
+  helpButton = createImg('help.png');
   alterButton();
   button.mousePressed(function() {
     table.download("xlsx", "engine-data.xlsx", {sheetName:"My Data"});
@@ -80,6 +85,13 @@ function setup() {
   playButton.mousePressed(playStopwatch);
   pauseButton.mousePressed(pauseStopwatch);
   resetButton.mousePressed(resetStopwatch);
+  helpButton.mousePressed(function() {
+    if (help) {
+      help = false;
+    }else {
+      help = true;
+    }
+  });
 }
 
 function playPause() {
@@ -188,6 +200,16 @@ function draw() {
   drawRivet(rivRad, h - rivRad);
   drawRivet(w/2 - rivRad, rivRad);
   drawRivet(w/2-rivRad, h - rivRad);
+  if (help) {
+    push();
+    textSize(SIZE / 35);
+    textFont(helpFont);
+    textAlign(CENTER);
+    fill('Blue');
+    text("-\nSpeed", x - (r*0.75), y);
+    text("+\nSpeed", x + (r*0.75), y);
+    pop();
+  }
 }
 
 function drawRivet(xCoord, yCoord) {
@@ -279,6 +301,8 @@ function alterButton() {
   pauseButton.position(w/2 + w/8 + w/4, y - r - SIZE/10);
   resetButton.size(SIZE/10, SIZE/10);
   resetButton.position(w/2 + w/8 + w/4 - SIZE/18, y - r - 2*SIZE/10);
+  helpButton.size(SIZE/15, SIZE/15);
+  helpButton.position(w - SIZE / 10, h - SIZE/10 - (rivRad*1.5));
 }
 
 var onBuffer = function(data) {
