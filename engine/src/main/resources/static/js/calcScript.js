@@ -172,7 +172,8 @@ function checkStepTwo() {
 }
 
 function data(x) {
-    return x.toDecimal(2)
+    y =  Math.round(x * 100) / 100;
+    return y;
 }
 
 function checkStepThree() {
