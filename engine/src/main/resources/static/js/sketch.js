@@ -208,6 +208,10 @@ function draw() {
     fill('Blue');
     text("-\nSpeed", x - (r*0.75), y);
     text("+\nSpeed", x + (r*0.75), y);
+    text("Change fuel", x + w/8, y - r/2);
+    text("Stopwatch\nControls", x + w/4 - r, y - (1.5*r));
+    text("Toggle\nhelp", w/2 - 1.8*(SIZE / 10), h - SIZE/10 - (1.2*rivRad));
+    text("Table\nControls",x + w/8 - SIZE /5,y + (1.2 * r));
     pop();
   }
 }
