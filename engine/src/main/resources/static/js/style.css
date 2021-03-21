@@ -28,6 +28,14 @@ button {
   border-radius: 15px;
 }
 
+img {
+  cursor: pointer;
+}
+
+img:active {
+  transform: translateY(2px);
+}
+
 button:hover {
   background-color: #3e8e41
 }
