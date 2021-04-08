@@ -6,7 +6,7 @@ let r = SIZE / 5;
 let speeds = ["1400","1500","1600", "1700", "1800", "1900", "2000","2100","2200","2300","2400"];
 let petrol = ["480865808", "480866073", "480866431", "480866534", "484084134", "484084340", "484084647", "484084941", "490413688", "490414048", "490451670"];
 let id = petrol;
-let diesel = ["480865808", "480866073", "480866431", "480866534", "484084134", "484084340", "484084647", "484084941", "490413688", "490414048", "490451670"];
+let diesel = ["534461934", "534464377", "534469083", "534471105", "534473103", "534475399", "534477657", "534479602", "534481812", "534483725", "534488837"];
 let count = 0;
 let paused = true;
 let myFont;
@@ -256,9 +256,6 @@ function mousePressed() {
       }
     }
     player.loadVideo(id[count]);
-    gasImg.remove();
-    gasImg = createImg((1400 + (100*count)).toString() + ' P Set 1 Gas.jpg');
-    alterButton();
   }
   if (dist(mouseX,mouseY, x + w/8, y) < r/4) {
     fuel = fuel * -1;
@@ -269,6 +266,13 @@ function mousePressed() {
     }
     player.loadVideo(id[count])
   }
+  gasImg.remove();
+  if (fuel > 0) {
+    gasImg = createImg((1400 + (100*count)).toString() + ' P Set 1 Gas.jpg');
+  }else {
+    gasImg = createImg((1400 + (100*count)).toString() + ' D Set 1 Gas.jpg');
+  }
+  alterButton();
 }
 
 function stopwatch() {
