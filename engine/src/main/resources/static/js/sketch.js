@@ -22,6 +22,7 @@ let clearButton;
 let resetButton;
 let addRowButton;
 let helpButton;
+let gasImg;
 let help = false;
 let stopPaused = true;
 let timer;
@@ -32,7 +33,6 @@ let fuel = 1;
 var options = {
   id: 480865808,
   width: window.innerWidth / 2,
-  controls: false,
   muted: true
 };
 let player = new Vimeo.Player('fuel_panel', options);
@@ -55,6 +55,7 @@ function setup() {
   pauseButton = createImg('pause.png');
   resetButton = createImg('reset.png');
   helpButton = createImg('help.png');
+  gasImg = createImg((1400 + count).toString() + ' P Set 1 Gas.jpg');
   alterButton();
   button.mousePressed(function() {
     table.download("xlsx", "engine-data.xlsx", {sheetName:"My Data"});
@@ -128,6 +129,10 @@ function draw() {
     cursor('default');
   }
   background(230);
+  push();
+  fill('black');
+  rect(x + SIZE/4.3, y - SIZE/3.175, SIZE/3.5, SIZE/5.5);
+  pop();
   push();
   fill('silver');
   ellipse(x,y,2*r,2*r);
@@ -208,8 +213,8 @@ function draw() {
     fill('Blue');
     text("-\nSpeed", x - (r*0.75), y);
     text("+\nSpeed", x + (r*0.75), y);
-    text("Change fuel", x + w/8, y - r/2);
-    text("Stopwatch\nControls", x + w/4 - r, y - (1.5*r));
+    text("Change fuel", x + w/8, y + r/2);
+    text("Stopwatch\nControls", x + w/4 - (r*0.8), y - (1.9*r));
     text("Toggle\nhelp", w/2 - 1.8*(SIZE / 10), h - SIZE/10 - (1.2*rivRad));
     text("Table\nControls",x + w/8 - SIZE /5,y + (1.2 * r));
     pop();
@@ -250,7 +255,10 @@ function mousePressed() {
         count = 0;
       }
     }
-  player.loadVideo(id[count])
+    player.loadVideo(id[count]);
+    gasImg.remove();
+    gasImg = createImg((1400 + (100*count)).toString() + ' P Set 1 Gas.jpg');
+    alterButton();
   }
   if (dist(mouseX,mouseY, x + w/8, y) < r/4) {
     fuel = fuel * -1;
@@ -307,6 +315,10 @@ function alterButton() {
   resetButton.position(w/2 + w/8 + w/4 - SIZE/18, y - r - 2*SIZE/10);
   helpButton.size(SIZE/15, SIZE/15);
   helpButton.position(w - SIZE / 10, h - SIZE/10 - (rivRad*1.5));
+  gasImg.size(SIZE/4, SIZE/6);
+  gasImg.position(3*(w/4) - SIZE/8, y - SIZE/3.25);
+  gasImg.style('cursor', 'default');
+  gasImg.style('border-radius', '10px');
 }
 
 var onBuffer = function(data) {
