@@ -34,6 +34,25 @@ describe('Stopwatch tests', function() {
     assert.equal(millisecond, 0);
     done();
   })
+
+  it('stopwatchTime should return correct formatted string', function(done) {
+    var time = 1.234;
+    var stopTime = stopwatch.stopwatchTime(stopwatch.getSeconds(time), stopwatch.getMilliseconds(time));
+    assert.equal(stopTime, "0:01:23");
+    time = 72.567;
+    stopTime = stopwatch.stopwatchTime(stopwatch.getSeconds(time), stopwatch.getMilliseconds(time));
+    assert.equal(stopTime, "1:12:56");
+    time = 3.000000;
+    stopTime = stopwatch.stopwatchTime(stopwatch.getSeconds(time), stopwatch.getMilliseconds(time));
+    assert.equal(stopTime, "0:03:00");
+    time = 125.245678;
+    stopTime = stopwatch.stopwatchTime(stopwatch.getSeconds(time), stopwatch.getMilliseconds(time));
+    assert.equal(stopTime, "2:05:25");
+    time = 0.987;
+    stopTime = stopwatch.stopwatchTime(stopwatch.getSeconds(time), stopwatch.getMilliseconds(time));
+    assert.equal(stopTime, "0:00:99");
+    done();
+  })
 });
 describe('Player Tests', function() {
   it('Loads Petrol Videos Correctly', function () {

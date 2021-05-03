@@ -95,6 +95,8 @@ function setup() {
 }
 
 function draw() {
+  h = (w/2) / ratio;
+  y = h/2;
   if (dist(mouseX,mouseY, x, y) < r) {
     cursor('pointer');
   } else if (dist(mouseX,mouseY, x + w/8, y) < r/4) {
