@@ -105,25 +105,30 @@ function draw() {
     cursor('default');
   }
   background(230);
+  //Draws gas analyser box
   push();
   fill('black');
   rect(x + SIZE/4.3, y - SIZE/3.175, SIZE/3.5, SIZE/5.5);
   pop();
   push();
+  //Draws speed dial outer
   fill('silver');
   ellipse(x,y,2*r,2*r);
   pop();
   push();
+  //Draws petrol switch
   fill('black');
   ellipse(x + w/8, y, r/2, r/2);
   pop();
   push();
+  //Draws petrol switch line
   stroke('silver');
   strokeWeight(2);
   var angle = fuel * PI/4;
   line(x + w/8, y, (x + w/8 + (r/4 * sin(angle))), (y - (r/4 *cos(angle))));
   pop();
   push();
+  //Fuel letters
   fill('black');
   textAlign(CENTER);
   textSize(SIZE/25);
@@ -132,14 +137,17 @@ function draw() {
   pop();
   push();
   fill('black');
+  //Speed switch inner
   ellipse(x,y,r,r);
   pop();
   push();
   fill(0);
+  //Stopwatch black
   ellipse(x + w/4,y, 2*r, 2*r);
   pop();
   push();
   fill('white');
+  //Stopwatch white
   ellipse(x + w/4, y, 2*r - 10, 2*r - 10);
   pop();
   push();
@@ -175,7 +183,7 @@ function draw() {
   pop();
   push();
   fill(0);
-  rect(x + w/4 + r, y -10, 10, 20);
+  rect(x + w/4 + r, y -r/10, r/10, r/5);
   pop();
   drawRivet(rivRad, rivRad);
   drawRivet(rivRad, h - rivRad);
@@ -264,10 +272,10 @@ function alterButton() {
   button.style("font-size", SIZE/10);
   button.size(SIZE/5, SIZE/10);
   button.position((3 * w) / 4 - (button.width)/2, y + r);
-  addRowButton.style("font-size", SIZE/15);
+  addRowButton.style("font-size", SIZE/30);
   addRowButton.size(SIZE/5, SIZE/12);
   addRowButton.position((3 * w) / 4 + SIZE/45, y + r + SIZE/9);
-  clearButton.style("font-size", SIZE/15);
+  clearButton.style("font-size", SIZE/30);
   clearButton.size(SIZE/5, SIZE/12);
   clearButton.position((3 * w) / 4 - addRowButton.width - SIZE/45, y + r + SIZE/9);
   playButton.size(SIZE/10,SIZE/10);

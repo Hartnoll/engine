@@ -6,6 +6,30 @@ html, body {
   color: black;
 }
 
+.cookie-banner {
+  position: fixed;
+  bottom: 40px;
+  left: 10%;
+  right: 10%;
+  width: 80%;
+  padding: 5px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #eee;
+  border-radius: 5px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  height: 20px;
+  background-color: #777;
+  border: none;
+  color: white;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
 canvas {
   display: block;
 }
@@ -26,6 +50,7 @@ button {
   background-color: #4CAF50;
   border: none;
   border-radius: 15px;
+  font-size: 1vw;
 }
 
 img {
@@ -58,5 +83,23 @@ a.link_button {
   color: #FFF;
   padding: 8px 12px;
   text-decoration: none;
+}
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none;
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background: grey; /* Black background with opacity */
+}
+@media only screen and (max-width: 600px) {
+  #overlay {
+    display: block; /* Black background with opacity */
+  }
 }
 
