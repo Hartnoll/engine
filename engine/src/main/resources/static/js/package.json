@@ -4,9 +4,13 @@
   "description": "control panel",
   "main": "sketch.js",
   "dependencies": {
+    "@vimeo/player": "^2.15.0",
     "chai": "^4.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jsdom": "16.5.3",
+    "jsdom-global": "3.0.2"
+  },
   "scripts": {
     "test": "mocha"
   },

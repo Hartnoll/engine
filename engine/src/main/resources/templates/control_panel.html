@@ -15,7 +15,15 @@
     </script>
     <meta charset="UTF-8">
     <title>Control Panel</title>
-    <noscript>You need to enable javascript to use this application!</noscript>
+    <noscript>
+        It looks like your browser either doesn't support javascript, or you do not have it enabled. Follow <a href="https://www.enable-javascript.com/">this link</a> to make sure it is installed.
+        <style type="text/css">
+            #header { display:none; }
+            #step1 { display:none; }
+            #step2 { display:none; }
+            #step3 { display:none; }
+        </style>
+    </noscript>
     <link rel="shortcut icon" type="image/jpg" href="bristol.jpg"/>
     <script src="js/libraries/p5.min.js"></script>
     <script src="js/stopwatch.js"></script>
@@ -74,6 +82,15 @@
         paginationSize: 5,
         tooltips: true,
         columns: [{
+            title: "Fuel type",
+            field: "fueltyoe",
+            sorter: "string",
+            width: 150,
+            headerFilter: "input",
+            editor: "select",
+            editorParams:{values:{"Petrol":"Petrol", "Diesel":"Diesel"}}}
+
+            ,{
             title: "Engine speed (rev/min)",
             field: "enginespeed",
             sorter: "string",
@@ -81,7 +98,8 @@
             headerFilter: "input",
             editor: "select",
             editorParams:{values:{"1400":"1400", "1500":"1500", "1600":"1600", "1700":"1700", "1800":"1800",
-                    "1900": "1900","2000":"2000", "2100":"2100","2200":"2200", "2300":"2300", "2400":"2400" }}},
+                    "1900": "1900","2000":"2000", "2100":"2100","2200":"2200", "2300":"2300", "2400":"2400" }}}
+            
             ,{
                 title: "Fuel drop length (cm)",
                 field: "length",
