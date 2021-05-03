@@ -3,12 +3,24 @@ class StopwatchFunctions {
     }
 
     getSeconds(time) {
-        return Math.trunc(time);
+        if (typeof time != "number") {
+            throw new Error("time must be a number")
+        }else if(time < 0){
+            throw new Error("time must be positive")
+        }else {
+            return Math.trunc(time);
+        }
     }
 
     getMilliseconds(time) {
-        this.decimal = time % 1;
-        return (100 * (this.decimal).toFixed(2));
+        if (typeof time != "number") {
+            throw new Error("time must be a number")
+        }else if(time < 0){
+            throw new Error("time must be positive")
+        }else {
+            this.decimal = time % 1;
+            return (100 * (this.decimal).toFixed(2));
+        }
     }
 
     stopwatchTime(seconds, milliseconds) {
