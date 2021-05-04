@@ -22,6 +22,30 @@ describe('Stopwatch tests', function() {
     assert.equal(second, 5);
     second = stopwatch.getSeconds(3.0);
     assert.equal(second, 3);
+    try {
+      second = stopwatch.getSeconds("hello");
+    }
+    catch(err) {
+      assert.equal(err.message, "time must be a number")
+    }
+    try {
+      second = stopwatch.getSeconds(true);
+    }
+    catch(err) {
+      assert.equal(err.message, "time must be a number")
+    }
+    try {
+      second = stopwatch.getSeconds(-1.234);
+    }
+    catch(err) {
+      assert.equal(err.message, "time must be positive")
+    }
+    try {
+      second = stopwatch.getSeconds(-0.04);
+    }
+    catch(err) {
+      assert.equal(err.message, "time must be positive")
+    }
     done();
   })
 
@@ -32,6 +56,30 @@ describe('Stopwatch tests', function() {
     assert.equal(millisecond, 24);
     millisecond = stopwatch.getMilliseconds(3.0000);
     assert.equal(millisecond, 0);
+    try {
+      second = stopwatch.getMilliseconds("hello");
+    }
+    catch(err) {
+      assert.equal(err.message, "time must be a number")
+    }
+    try {
+      second = stopwatch.getMilliseconds(true);
+    }
+    catch(err) {
+      assert.equal(err.message, "time must be a number")
+    }
+    try {
+      second = stopwatch.getMilliseconds(-1.234);
+    }
+    catch(err) {
+      assert.equal(err.message, "time must be positive")
+    }
+    try {
+      second = stopwatch.getMilliseconds(-0.04);
+    }
+    catch(err) {
+      assert.equal(err.message, "time must be positive")
+    }
     done();
   })
 
