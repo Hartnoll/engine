@@ -148,7 +148,7 @@ function draw() {
   push();
   fill('white');
   //Stopwatch white
-  ellipse(x + w/4, y, 2*r - 10, 2*r - 10);
+  ellipse(x + w/4, y, 2*r - r/10, 2*r - r/10);
   pop();
   push();
   fill('red');
