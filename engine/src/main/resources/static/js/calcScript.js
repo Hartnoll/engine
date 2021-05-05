@@ -216,7 +216,7 @@ function checkStepThree() {
                 return false;
             }
 
-            var p = 1000 * (m * 44400)/1000
+            var p = 44400 * (755 * ((fuelDropLength.value * 9.04 / 2) / 10 ** 6)) / ft
             if (fPower.value != data(p)) {
                 Swal.fire({
                     title: "Sorry...",
@@ -269,7 +269,7 @@ function checkStepThree() {
                 return false;
             }
 
-            var p = 1000 * (m * 43400) / 1000
+            var p = 43400 * (832 * ((fuelDropLength.value * 9.04 / 2) / 10 ** 6)) / ft
             if (fPower.value != data(p)) {
                 Swal.fire({
                     title: "Sorry...",
