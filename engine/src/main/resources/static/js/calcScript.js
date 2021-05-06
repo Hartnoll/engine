@@ -216,11 +216,11 @@ function checkStepThree() {
                 return false;
             }
 
-            var p = 1000 * (m * 44400)/1000
+            var p = 44400 * (755 * ((fuelDropLength.value * 9.04 / 2) / 10 ** 6)) / ft
             if (fPower.value != data(p)) {
                 Swal.fire({
                     title: "Sorry...",
-                    text: "There is an error about flue power in your calculations!",
+                    text: "There is an error about fuel power in your calculations!",
                     icon: "error",
                 });
                 return false;
@@ -273,7 +273,7 @@ function checkStepThree() {
             if (fPower.value != data(p)) {
                 Swal.fire({
                     title: "Sorry...",
-                    text: "There is an error about flue power in your calculations!",
+                    text: "There is an error about fuel power in your calculations!",
                     icon: "error",
                 });
                 return false;
