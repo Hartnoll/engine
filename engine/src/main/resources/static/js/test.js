@@ -112,12 +112,33 @@ describe('Calculation Tests', function() {
     assert.equal(Calc.fuelDrop(-1), false);
   })
   it('Checks fuel time correctly', function() {
-    assert.equal(Calc.fuelDrop(1234), false);
-    assert.equal(Calc.fuelDrop(15), true);
-    assert.equal(Calc.fuelDrop(-1), false);
+    assert.equal(Calc.fuelTime(1234), false);
+    assert.equal(Calc.fuelTime(15), true);
+    assert.equal(Calc.fuelTime(-1), false);
   })
   it('Checks torque correctly', function() {
-    assert.equal(Calc.fuelDrop(16, "P"), false);
+    assert.equal(Calc.torque(16, "P"), false);
+    assert.equal(Calc.torque(23.5, "P"), true);
+    assert.equal(Calc.torque(17.9, "P"), false);
+    assert.equal(Calc.torque(33.5, "D"), false);
+    assert.equal(Calc.torque(26, "D"), true);
+  })
+  it('Checks speed correctly', function() {
+    assert.equal(Calc.speed(1400), true);
+    assert.equal(Calc.speed(1500.23), false);
+    assert.equal(Calc.speed(1800), true);
+    assert.equal(Calc.speed(-234), false);
+  })
+  it('Checks if blank correctly', function() {
+    assert.equal(Calc.isBlank(""), true);
+    assert.equal(Calc.isBlank("hghghgh"), false);
+    assert.equal(Calc.isBlank(1400), false);
+  })
+  it('Checks if number correctly', function() {
+    assert.equal(Calc.isNumber("jgjgjgj"), false);
+    assert.equal(Calc.isNumber(54), true);
+    assert.equal(Calc.isNumber(56.3), true);
+    assert.equal(Calc.isNumber(-3), true);
   })
 });
 
