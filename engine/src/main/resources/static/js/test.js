@@ -7,6 +7,7 @@ const expect = require('chai').expect;
 const assert = require('assert');
 const Stopwatch = require('../js/stopwatch');
 const VimeoPlayer = require("@vimeo/player");
+const Calculations = require("../js/calculations");
 const jsdom = require('jsdom-global')();
 let petrol = ["480865808", "480866073", "480866431", "480866534", "484084134", "484084340", "484084647", "484084941", "490413688", "490414048", "490451670"];
 let diesel = ["534461934", "534464377", "534469083", "534471105", "534473103", "534475399", "534477657", "534479602", "534481812", "534483725", "534488837"];
@@ -102,6 +103,45 @@ describe('Stopwatch tests', function() {
     done();
   })
 });
+
+describe('Calculation Tests', function() {
+  var Calc = new Calculations();
+  it('Checks fuel drop correctly', function() {
+    assert.equal(Calc.fuelDrop(16), false);
+    assert.equal(Calc.fuelDrop(15), true);
+    assert.equal(Calc.fuelDrop(-1), false);
+  })
+  it('Checks fuel time correctly', function() {
+    assert.equal(Calc.fuelTime(1234), false);
+    assert.equal(Calc.fuelTime(15), true);
+    assert.equal(Calc.fuelTime(-1), false);
+  })
+  it('Checks torque correctly', function() {
+    assert.equal(Calc.torque(16, "P"), false);
+    assert.equal(Calc.torque(23.5, "P"), true);
+    assert.equal(Calc.torque(17.9, "P"), false);
+    assert.equal(Calc.torque(33.5, "D"), false);
+    assert.equal(Calc.torque(26, "D"), true);
+  })
+  it('Checks speed correctly', function() {
+    assert.equal(Calc.speed(1400), true);
+    assert.equal(Calc.speed(1500.23), false);
+    assert.equal(Calc.speed(1800), true);
+    assert.equal(Calc.speed(-234), false);
+  })
+  it('Checks if blank correctly', function() {
+    assert.equal(Calc.isBlank(""), true);
+    assert.equal(Calc.isBlank("hghghgh"), false);
+    assert.equal(Calc.isBlank(1400), false);
+  })
+  it('Checks if number correctly', function() {
+    assert.equal(Calc.isNumber("jgjgjgj"), false);
+    assert.equal(Calc.isNumber(54), true);
+    assert.equal(Calc.isNumber(56.3), true);
+    assert.equal(Calc.isNumber(-3), true);
+  })
+});
+
 describe('Player Tests', function() {
   it('Loads Petrol Videos Correctly', function () {
     var div = document.createElement('div')

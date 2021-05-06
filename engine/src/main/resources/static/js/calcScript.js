@@ -1,3 +1,4 @@
+Calculations = new CalculationFunctions();
 function selectFuelType(name) {
     var j = 0;
     var fuelType = document.getElementsByName(name)
@@ -24,7 +25,7 @@ function checkFuelType(name) {
 
 function checkInput(id) {
     var m = document.getElementById(id);
-    if (isNaN(Number(m.value))) {
+    if (!(Calculations.isNumber(m.value))) {
         Swal.fire({
             title: "Oops...",
             text: "Your input should be numbers! Symbols other than the decimal point are not allowed!",
@@ -32,7 +33,7 @@ function checkInput(id) {
         });
         return false;
     }
-    if (m.value == "") {
+    if (Calculations.isBlank(m.value)) {
         Swal.fire({
             title: "Oops...",
             text: "Your blanks must be filled in!",
@@ -45,7 +46,7 @@ function checkInput(id) {
 
 function checkFuelDropLength(id) {
     var fuelDropLength = document.getElementById(id);
-    if (fuelDropLength.value < 0 || fuelDropLength.value > 15) {
+    if (!(Calculations.fuelDrop(fuelDropLength.value))) {
         Swal.fire({
             title: "Sorry...",
             text: "This is not a valid fuel drop length!",
@@ -100,21 +101,16 @@ function checkStepTwo() {
     c = checkInput("fuelTime");
 
     if (a & b & c) {
-        for (i = 0; i < allSpeed.length; i++) {
-            if (s == allSpeed[i]) {
-                break;
-            }
-            if (i == allSpeed.length - 1) {
-                Swal.fire({
-                    title: "Sorry...",
-                    text: "This is not a valid speed!",
-                    icon: "error",
-                });
-            }
+        if (!(Calculations.speed(s))) {
+            Swal.fire({
+                title: "Sorry...",
+                text: "This is not a valid speed!",
+                icon: "error",
+            });
+            return false;
         }
-
         if (checkFuelType("Q1") == "A") {
-            if (t >= 27 || t <= 18) {
+            if (!(Calculations.torque(t, "P"))) {
                 Swal.fire({
                     title: "Sorry...",
                     text: "This is not a valid torque for petrol!",
@@ -122,7 +118,7 @@ function checkStepTwo() {
                 });
                 return false;
             }
-            if (ft >= 125 || ft < 0) {
+            if (!(Calculations.fuelTime(ft))) {
                 Swal.fire({
                     title: "Sorry...",
                     text: "This is not a valid fuel time for petrol!",
@@ -142,7 +138,7 @@ function checkStepTwo() {
         }
 
         if (checkFuelType("Q1") == "B") {
-            if (t >= 33 || t <= 25) {
+            if (!(Calculations.torque(t, "D"))) {
                 Swal.fire({
                     title: "Sorry...",
                     text: "This is not a valid torque for diesel!",
@@ -150,7 +146,7 @@ function checkStepTwo() {
                 });
                 return false;
             }
-            if (ft >= 125 || ft < 0) {
+            if (!(Calculations.fuelTime(ft))) {
                 Swal.fire({
                     title: "Sorry...",
                     text: "This is not a valid fuel time for diesel!",
@@ -216,11 +212,11 @@ function checkStepThree() {
                 return false;
             }
 
-            var p = 1000 * (m * 44400)/1000
+            var p = 44400 * (755 * ((fuelDropLength.value * 9.04 / 2) / 10 ** 6)) / ft
             if (fPower.value != data(p)) {
                 Swal.fire({
                     title: "Sorry...",
-                    text: "There is an error about flue power in your calculations!",
+                    text: "There is an error about fuel power in your calculations!",
                     icon: "error",
                 });
                 return false;
@@ -269,11 +265,11 @@ function checkStepThree() {
                 return false;
             }
 
-            var p = 1000 * (m * 43400) / 1000
+            var p = 43400 * (832 * ((fuelDropLength.value * 9.04 / 2) / 10 ** 6)) / ft
             if (fPower.value != data(p)) {
                 Swal.fire({
                     title: "Sorry...",
-                    text: "There is an error about flue power in your calculations!",
+                    text: "There is an error about fuel power in your calculations!",
                     icon: "error",
                 });
                 return false;
